@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{938F5CC0-FF6C-4251-9C6F-C5D10FF37EF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{94BFA601-447A-43B9-B610-EE56EC5B3738}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{834814F0-06C6-4C0C-8A12-31DE13F96F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3EBC13FD-AE2E-4DF1-B7CB-EE1CE686A095}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VietTast.Services.ProductAPI", "VieEss.Services.ProductAPI\VietTast.Services.ProductAPI.csproj", "{B2F2FF46-06C3-41B6-B04C-3F71618633CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2F2FF46-06C3-41B6-B04C-3F71618633CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F2FF46-06C3-41B6-B04C-3F71618633CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F2FF46-06C3-41B6-B04C-3F71618633CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F2FF46-06C3-41B6-B04C-3F71618633CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2F2FF46-06C3-41B6-B04C-3F71618633CE} = {3EBC13FD-AE2E-4DF1-B7CB-EE1CE686A095}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A333ED49-2ED4-4AFD-ABD1-D137CE286FE3}
+	EndGlobalSection
+EndGlobal
