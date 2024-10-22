@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{938F5CC0-FF6C-4251-9C6F-C5D10FF37EF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{94BFA601-447A-43B9-B610-EE56EC5B3738}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{834814F0-06C6-4C0C-8A12-31DE13F96F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3EBC13FD-AE2E-4DF1-B7CB-EE1CE686A095}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vietast.Web", "Vietast.Web\Vietast.Web.csproj", "{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vietast.Services.ProductAPI", "Vietast.Services.ProductAPI\Vietast.Services.ProductAPI.csproj", "{D23C03D6-35A1-4FEE-B080-188B1DDC94EB}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "vietast.webadmin", "Vietast.WebAdmin\vietast.webadmin.esproj", "{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vietast.Services.AuthAPI", "Vietast.Services.AuthAPI\Vietast.Services.AuthAPI.csproj", "{21C1A85D-19E3-426B-88E8-44602ADA6573}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23C03D6-35A1-4FEE-B080-188B1DDC94EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23C03D6-35A1-4FEE-B080-188B1DDC94EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23C03D6-35A1-4FEE-B080-188B1DDC94EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23C03D6-35A1-4FEE-B080-188B1DDC94EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{21C1A85D-19E3-426B-88E8-44602ADA6573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C1A85D-19E3-426B-88E8-44602ADA6573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C1A85D-19E3-426B-88E8-44602ADA6573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C1A85D-19E3-426B-88E8-44602ADA6573}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35E5377F-60FD-4B29-A9FD-DF779E4CEFC0} = {938F5CC0-FF6C-4251-9C6F-C5D10FF37EF2}
+		{D23C03D6-35A1-4FEE-B080-188B1DDC94EB} = {3EBC13FD-AE2E-4DF1-B7CB-EE1CE686A095}
+		{DB908CDB-B8D9-4F37-A653-2E9D39F41DAB} = {938F5CC0-FF6C-4251-9C6F-C5D10FF37EF2}
+		{21C1A85D-19E3-426B-88E8-44602ADA6573} = {3EBC13FD-AE2E-4DF1-B7CB-EE1CE686A095}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A333ED49-2ED4-4AFD-ABD1-D137CE286FE3}
+	EndGlobalSection
+EndGlobal
