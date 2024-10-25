@@ -1,7 +1,7 @@
 import { Product } from "./Product";
 
-export interface Response {
+export interface Response<T> {
     isSuccess: boolean;
     message: string;
-    result: Product[];
+    result: T[];
 }

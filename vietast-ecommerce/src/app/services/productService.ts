@@ -1,10 +1,11 @@
+import { Category } from '../models/Category';
 import { Filter } from '../models/Filter';
-import { ProductFilter } from '../models/Product';
+import { Product, ProductFilter } from '../models/Product';
 import { fetchData, fetchDataWithFilter } from '../utils/api';
 
 export const getProductsByFilter = async (filter: Filter<ProductFilter>) => {
     try {
-        const response = await fetchDataWithFilter('product/filter', filter);
+        const response = await fetchDataWithFilter<Product>('product/filter', filter);
         return response;
     } catch (error) {
         throw error;
@@ -13,7 +14,7 @@ export const getProductsByFilter = async (filter: Filter<ProductFilter>) => {
 
 export const getCategories = async () => {
     try {
-        const response = await fetchData('category');
+        const response = await fetchData<Category>('category');
         return response;
     } catch (error) {
         throw error;
