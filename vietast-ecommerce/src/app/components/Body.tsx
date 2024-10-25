@@ -31,7 +31,7 @@ const Body: React.FC = () => {
     }, [productFilter]); // Mảng rỗng để chỉ chạy một lần khi component mount
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (error) return <div className="body"><img src="/assets/COVER.png" alt="error" /></div>;
     if (!data) return <p>No data</p>;
   return (
     <div className="body">
