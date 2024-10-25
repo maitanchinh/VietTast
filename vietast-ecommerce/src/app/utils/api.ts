@@ -13,7 +13,7 @@ export const fetchData = async (endpoint : String): Promise<any> => {
     }
 };
 
-export const fetchDataWithFilter = async (endpoint: string, filter: any): Promise<any> => {
+export const fetchDataWithFilter = async (endpoint: String, filter: any): Promise<any> => {
     try {
         const response = await axios.post(`${API_URL}/api/${endpoint}`, filter);
         const jsonData: Response = await response.data;

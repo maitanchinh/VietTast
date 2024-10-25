@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import ProductCard from "./ProductCard";
 import styles from "../styles/Body.module.css";
 import { getProductsByFilter, getCategories } from "../services/productService";
-import { Response } from "../models/Response";
 import { Product, ProductFilter } from "../models/Product";
 import { Category } from "../models/Category";
 import { Filter } from "../models/Filter";
