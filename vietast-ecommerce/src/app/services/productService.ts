@@ -5,7 +5,7 @@ import { fetchData, fetchDataWithFilter } from '../utils/api';
 
 export const getProductsByFilter = async (filter: Filter<ProductFilter>) => {
     try {
-        const response = await fetchDataWithFilter<Product>('product/filter', filter);
+        const response = await fetchDataWithFilter<ProductFilter, Product>('product/filter', filter);
         return response;
     } catch (error) {
         throw error;
