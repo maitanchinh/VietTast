@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vietast.Services.ProductAPI.Data;
 using Vietast.Services.ProductAPI.Models;
 using Vietast.Services.ProductAPI.Models.DTO;
+using Vietast.Services.ProductAPI.Services;
 
 namespace Vietast.Services.ProductAPI.Controllers
 {
@@ -20,11 +22,43 @@ namespace Vietast.Services.ProductAPI.Controllers
             _response = new ResponseDTO();
             _mapper = mapper;
         }
-        [HttpGet]
-        public ResponseDTO Get() {             
+        [HttpPost("filter")]
+        public ResponseDTO GetFilter([FromBody] Filter<ProductFilterDTO> filter)
+        {
             try
             {
-                IEnumerable<Product> products = _dbContext.Products.Include(p => p.Category).ToList();
+                IQueryable<Product> query = _dbContext.Products.Include(p => p.Category);
+
+                // Apply filtering
+                if (filter.Criteria != null)
+                {
+                    if (!string.IsNullOrEmpty(filter.Criteria.Name))
+                    {
+                        query = query.Where(p => p.Name.Contains(filter.Criteria.Name));
+                    }
+                    if (filter.Criteria.CategoryId != null)
+                    {
+                        query = query.Where(p => p.CategoryId == filter.Criteria.CategoryId);
+                    }
+                }
+
+                // Apply sorting
+                if (!string.IsNullOrEmpty(filter.SortBy))
+                {
+                    if (filter.SortOrder != "asc")
+                    {
+                        query = query.OrderByDescending(e => EF.Property<object>(e, filter.SortBy));
+                    }
+                    else
+                    {
+                        query = query.OrderBy(e => EF.Property<object>(e, filter.SortBy));
+                    }
+                }
+
+                // Apply pagination
+                query = query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize);
+
+                IEnumerable<Product> products = query.ToList();
                 _response.Result = _mapper.Map<IEnumerable<ProductDTO>>(products);
             }
             catch (Exception ex)
@@ -52,14 +86,22 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPost]
-        public ResponseDTO Post([FromBody] ProductCreateDTO productDTO)
+        [Consumes("multipart/form-data")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<ResponseDTO> Post([FromForm] ProductCreateDTO productDTO)
         {
             try
             {
                 Product product = _mapper.Map<Product>(productDTO);
                 product.CreatedAt = DateTime.UtcNow;
                 product.UpdatedAt = DateTime.UtcNow;
-                _dbContext.Products.Add(product);
+                using (var stream = productDTO.Image.OpenReadStream())
+                {
+                    var firebaseStorageService = new FirebaseStorageService();
+                    string imageUrl = await firebaseStorageService.UploadImageAsync(DateTime.UtcNow +".jpg", stream);
+                    product.ImageUrl = imageUrl;
+                }
+                    _dbContext.Products.Add(product);
                 _dbContext.SaveChanges();
                 _response.Result = _mapper.Map<ProductDTO>(product);
             }
@@ -72,6 +114,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Put([FromBody] ProductUpdateDTO productDTO)
         {
             try
@@ -96,6 +139,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Delete(Guid id)
         {
             try

@@ -14,7 +14,7 @@ namespace Vietast.Services.AuthAPI.Services
         {
             _jwtOptions = jwtOptions.Value;
         }
-        public string GenerateToken(ApplicationUser applicationUser)
+        public string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> roles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = System.Text.Encoding.ASCII.GetBytes(_jwtOptions.Secret);
@@ -23,6 +23,7 @@ namespace Vietast.Services.AuthAPI.Services
                 new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id),
                 new Claim(JwtRegisteredClaimNames.Name, applicationUser.Name)
             };
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Audience = _jwtOptions.Audience,

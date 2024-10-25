@@ -96,6 +96,7 @@ namespace Vietast.Web.Controllers
             identity.AddClaim(new Claim(JwtRegisteredClaimNames.Name, token.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Name).Value));
 
             identity.AddClaim(new Claim(ClaimTypes.Name, token.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
+            identity.AddClaim(new Claim(ClaimTypes.Role, token.Claims.FirstOrDefault(u => u.Type == "role").Value));
 
             var principle = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);

@@ -18,7 +18,7 @@ namespace Vietast.Web.Service
                 ApiType = SD.ApiType.POST,
                 Url = SD.AuthAPIBase + "/api/auth/assign-role",
                 Data = registrationRequestDTO
-            });
+            }, withBearer: false);
         }
 
         public Task<ResponseDTO?> LoginAsync(LoginRequestDTO loginRequestDTO)
@@ -28,7 +28,7 @@ namespace Vietast.Web.Service
                 ApiType = SD.ApiType.POST,
                 Url = SD.AuthAPIBase + "/api/auth/login",
                 Data = loginRequestDTO
-            });
+            }, withBearer: false);
         }
 
         public async Task<ResponseDTO?> RegisterAsync(RegistrationRequestDTO registrationRequestDTO)
@@ -38,7 +38,7 @@ namespace Vietast.Web.Service
                 ApiType = SD.ApiType.POST,
                 Url = SD.AuthAPIBase + "/api/auth/register",
                 Data = registrationRequestDTO
-            });
+            }, withBearer: false);
 
         }
     }

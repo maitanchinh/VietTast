@@ -11,20 +11,72 @@ namespace Vietast.Web.Service
     public class BaseService : IBaseService
     {
         private readonly IHttpClientFactory _clientFactory;
-        public BaseService(IHttpClientFactory clientFactory)
+        private readonly ITokenProvider _tokenProvider;
+        public BaseService(IHttpClientFactory clientFactory, ITokenProvider tokenProvider)
         {
             _clientFactory = clientFactory;
+            _tokenProvider = tokenProvider;
         }
-        public async Task<ResponseDTO?> SendAsync(RequestDTO requestDTO)
+        public async Task<ResponseDTO?> SendAsync(RequestDTO requestDTO, bool withBearer = true)
         {
             HttpClient client = _clientFactory.CreateClient();
             HttpRequestMessage message = new HttpRequestMessage();
-            message.Headers.Add("Accept", "application/json");
+            if (requestDTO.ContentType == ContentType.MultipartFormData)
+            {
+                message.Headers.Add("Accept", "*/*");
+            }
+            else
+            {
+                message.Headers.Add("Accept", "application/json");
+            }
+            if (withBearer)
+            {
+                message.Headers.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+            }
             message.RequestUri = new Uri(requestDTO.Url);
+
             if (requestDTO.Data != null)
             {
-                message.Content = new StringContent(JsonConvert.SerializeObject(requestDTO.Data), Encoding.UTF8, "application/json");
+                if (requestDTO.ContentType == ContentType.MultipartFormData)
+                {
+                    var multipartContent = new MultipartFormDataContent();
+                    var properties = requestDTO.Data.GetType().GetProperties();
+
+                    foreach (var property in properties)
+                    {
+                        var propName = property.Name;
+                        var propValue = property.GetValue(requestDTO.Data);
+
+                        // Handle byte[] (e.g., file upload)
+                        if (propValue is IFormFile formFile)
+                        {
+                            if (formFile != null)
+                            {
+                                multipartContent.Add(new StreamContent(formFile.OpenReadStream()), property.Name, formFile.FileName);
+                            }
+                            //using (var memoryStream = new MemoryStream())
+                            //{
+                            //    await formFile.CopyToAsync(memoryStream);
+                            //    var fileBytes = memoryStream.ToArray();
+                            //    var byteArrayContent = new ByteArrayContent(fileBytes);
+                            //    multipartContent.Add(byteArrayContent, propName, "filename");
+                            //}   
+                        }
+                        else
+                        {
+                            // Handle other types as string content
+                            multipartContent.Add(new StringContent(propValue?.ToString() ?? string.Empty), propName);
+                        }
+                    }
+
+                    message.Content = multipartContent;
+                }
+                else
+                {
+                    message.Content = new StringContent(JsonConvert.SerializeObject(requestDTO.Data), Encoding.UTF8, "application/json");
+                }
             }
+
             HttpResponseMessage apiResponse = new HttpResponseMessage();
             switch (requestDTO.ApiType)
             {

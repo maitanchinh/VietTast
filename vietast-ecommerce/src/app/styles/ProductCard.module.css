@@ -1,0 +1,55 @@
+.productCard {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .productImage {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .productCard:hover .productImage {
+    opacity: 0.8;
+  }
+  
+  /* Overlay with icons */
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .productCard:hover .overlay {
+    opacity: 1;
+  }
+  
+  .iconBtn {
+    background-color: #0c2e61;
+    width: 50px;
+    height: 50px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .iconBtn:hover {
+    background-color: #f39c12;
+  }

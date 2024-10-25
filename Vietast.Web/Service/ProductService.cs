@@ -1,6 +1,7 @@
 ﻿using Vietast.Web.Models;
 using Vietast.Web.Service.IService;
 using Vietast.Web.Utils;
+using static Vietast.Web.Utils.SD;
 
 namespace Vietast.Web.Service
 {
@@ -15,8 +16,9 @@ namespace Vietast.Web.Service
         {
             return await _baseService.SendAsync(new RequestDTO
             {
-                ApiType = SD.ApiType.GET,
-                Url = SD.ProductAPIBase + "/api/product"
+                ApiType = SD.ApiType.POST,
+                Url = SD.ProductAPIBase + "/api/product/filter",
+                Data = new FilterDTO<ProductFilterDTO>( )
             });
         }
 
@@ -32,6 +34,7 @@ namespace Vietast.Web.Service
         {
             return await _baseService.SendAsync(new RequestDTO
             {
+                ContentType = ContentType.MultipartFormData,
                 ApiType = SD.ApiType.POST,
                 Url = SD.ProductAPIBase + "/api/product",
                 Data = productCreateDTO

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Vietast.Services.ProductAPI.Data;
@@ -51,6 +52,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Post([FromBody] SKUCreateDTO skuDTO)
         {
             try
@@ -71,6 +73,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Put([FromBody] SKUUpdateDTO skuDTO)
         {
             try
@@ -90,6 +93,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Delete(Guid id)
         {
             try

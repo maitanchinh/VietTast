@@ -4,6 +4,7 @@ using Vietast.Services.ProductAPI.Models;
 using Vietast.Services.ProductAPI.Data;
 using Vietast.Services.ProductAPI.Models.DTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vietast.Services.ProductAPI.Controllers
 {
@@ -53,6 +54,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Post([FromBody] CategoryCreateDTO categoryDTO)
         {
             try
@@ -73,6 +75,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Put([FromBody] CategoryUpdateDTO categoryDTO)
         {
             try
@@ -92,6 +95,7 @@ namespace Vietast.Services.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDTO Delete(Guid id)
         {
             try

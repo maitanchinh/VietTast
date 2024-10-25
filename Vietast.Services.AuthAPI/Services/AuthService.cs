@@ -48,7 +48,7 @@ namespace Vietast.Services.AuthAPI.Services
                 if (user != null && isValid)
                 {
                     var userRoles = await _userManager.GetRolesAsync(user);
-                    var token = _jwtTokenGenerator.GenerateToken(user);
+                    var token = _jwtTokenGenerator.GenerateToken(user, userRoles);
                     return new LoginResponseDTO()
                     {
                         IsSuccess = true,

@@ -64,7 +64,7 @@ namespace Vietast.Web.Controllers
                     TempData["success"] = "Product created successfully";
                     return RedirectToAction(nameof(Index));
                 }
-                else
+                else if(response != null)
                 {
                     TempData["error"] = response.Message;
                 }
