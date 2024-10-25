@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "../models/Product";
 import styles from "../styles/ProductCard.module.css";
+import Image from "next/image";
 
 const ProductCard: React.FC<Product> = ({
   imageUrl,
@@ -8,7 +9,7 @@ const ProductCard: React.FC<Product> = ({
 }) => {
   return (
     <div className={styles.productCard}>
-      <img
+      <Image
         src={imageUrl}
         alt={name}
         className={styles.productImage}
